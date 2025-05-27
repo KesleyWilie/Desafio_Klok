@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.klok</groupId>
+  <artifactId>Desafio-Klok</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Desafio-Klok</name>
+  <url>http://maven.apache.org</url>
+
+    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <java.version>11</java.version> <!-- Ou 17, se preferir. Ajuste o plugin compiler também -->
+      <selenium.version>4.33.0</selenium.version> <!-- Versão recente do Selenium -->
+      <cucumber.version>7.22.2</cucumber.version> <!-- Versão recente do Cucumber -->
+      <testng.version>7.11.0</testng.version> <!-- Versão recente do TestNG -->
+      <webdrivermanager.version>6.1.0</webdrivermanager.version> <!-- Versão recente do WebDriverManager -->
+      <maven.compiler.source>${java.version}</maven.compiler.source>
+      <maven.compiler.target>${java.version}</maven.compiler.target>
+      <surefire.plugin.version>3.2.5</surefire.plugin.version>
+
+
+      <cucumber.filter.tags>@all</cucumber.filter.tags>
+      <browser>chrome</browser>
+      <headless>false</headless>
+
+    </properties>
+
+    <dependencies>
+      <!-- Selenium WebDriver -->
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>${selenium.version}</version>
+      </dependency>
+
+      <!-- Cucumber Java -->
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Cucumber TestNG -->
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-testng</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- TestNG -->
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>${testng.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- WebDriverManager -->
+      <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+      <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>${webdrivermanager.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/junit/junit -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>2.0.17</version>
+        <scope>test</scope>
+      </dependency>
+
+
+
+    </dependencies>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire.plugin.version}</version>
+          <configuration>
+            <testFailureIgnore>false</testFailureIgnore>
+            <includes>
+              <include>**/runners/TestRunner.java</include>
+            </includes>
+            <!-- Permite passar propriedades do sistema via -D na linha de comando -->
+            <!-- Ex: mvn test -Dcucumber.filter.tags="@magalu" -Dheadless=true -->
+            <systemPropertyVariables>
+              <test.cucumber.filter.tags>${cucumber.filter.tags}</test.cucumber.filter.tags>
+              <browser>${browser}</browser>
+              <headless>${headless}</headless>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+  </project>

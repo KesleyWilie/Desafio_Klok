@@ -1,0 +1,43 @@
+-- Desafio Klok - Consulta SQL
+-- Pergunta: Quais são os detalhes das apólices de seguro de todos os clientes da "SeguraTudo"
+-- que possuem apólices de seguro ativas, incluindo o nome do cliente, número da apólice,
+-- tipo de seguro e valor do prêmio?
+
+-- Assumindo as seguintes estruturas de tabela (ou similares):
+--
+-- Tabela: clientes
+-- Colunas:
+--   id_cliente (INT, Chave Primária)
+--   nome (VARCHAR)
+--   endereco (VARCHAR)
+--   numero_telefone (VARCHAR)
+--
+-- Tabela: apolices
+-- Colunas:
+--   id_apolice (INT, Chave Primária) -- Ou 'numero_apolice' como identificador único da apólice
+--   id_cliente (INT, Chave Estrangeira referenciando clientes.id_cliente)
+--   numero_apolice (VARCHAR) -- Número da apólice visível ao cliente
+--   tipo_seguro (VARCHAR)
+--   valor_premio (DECIMAL)
+--   status_apolice (VARCHAR) -- Ex: 'ATIVA', 'INATIVA', 'CANCELADA'
+
+SELECT
+    c.nome AS nome_cliente,
+    a.numero_apolice,
+    a.tipo_seguro,
+    a.valor_premio
+FROM
+    clientes c
+INNER JOIN
+    apolices a ON c.id_cliente = a.id_cliente
+WHERE
+    a.status_apolice = 'ATIVA'; -- Ou qualquer que seja o valor que indica uma apólice ativa.
+
+-- Notas de Suposição:
+-- 1. A tabela 'clientes' possui uma chave primária 'id_cliente'.
+-- 2. A tabela 'apolices' possui uma chave primária 'id_apolice' e uma chave estrangeira 'id_cliente'
+--    que se relaciona com a tabela 'clientes'.
+-- 3. A tabela 'apolices' possui uma coluna 'numero_apolice' que é o identificador da apólice
+--    a ser exibido.
+-- 4. A tabela 'apolices' possui uma coluna chamada 'status_apolice' (ou similar) que armazena
+--    o status da apólice, e o valor 'ATIVA' (ou equivalente) indica uma apólice ativa.
