@@ -14,7 +14,7 @@ O desafio consiste em duas partes principais:
         3.  Validar o retorno da busca.
     *   Considerar cenários de sucesso e fluxos alternativos.
     *   Utilizar boas práticas de organização de código e interação com elementos da aplicação.
-    *   Publicar o código e cenários no GitHub ou Bitbucket.
+    *   Publicar o código e cenários no GitHub.
 
 2.  **Consulta SQL:**
     *   Dada uma seguradora "SeguraTudo" com tabelas `clientes` e `apólices`.
