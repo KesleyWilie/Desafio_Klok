@@ -79,7 +79,7 @@ O desafio consiste em duas partes principais:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <url-do-seu-repositorio>
+    git clone <https://github.com/KesleyWilie/Desafio_Klok>
     cd <nome-do-diretorio-do-projeto>
     ```
 
